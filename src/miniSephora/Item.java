@@ -5,4 +5,5 @@ public class Item {
 	Product product;
 	int quantity;
 
+	//comment
 }
