@@ -9,7 +9,7 @@ import java.util.List;
 public class Order extends ShoppingBasket {
 	
 	int orderID;
-	String nameAndSurname;
+	String receiverName; 	//destinatar
 	String phoneNo;
 	String adress;		
 	String city;
@@ -19,12 +19,12 @@ public class Order extends ShoppingBasket {
 	
 	public static int nextID;
 	
-	public Order( String nameAndSurname, String phoneNo, String adress, String city, List<Item> itemList, String orderDate, 
+	public Order( String receiver, String phoneNo, String adress, String city, List<Item> itemList, String orderDate, 
 			User user, float total) {
 		super.itemList = itemList;
 		this.orderID = nextID;
 		nextID++;
-		this.nameAndSurname = nameAndSurname;
+		this.receiverName = receiver;
 		this.phoneNo = phoneNo;
 		this.adress = adress;
 		this.city = city;
@@ -37,6 +37,11 @@ public class Order extends ShoppingBasket {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String toString() {
+		return  orderID+", "+ receiverName+", "+ phoneNo+", "+adress+", "+city+", "+ this.itemList.toString() +", "+ orderDate+", "+user.toString()+
+				", "+total;
 	}
 	
 }

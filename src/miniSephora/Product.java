@@ -15,7 +15,7 @@ public class Product {
 	}
 	
 	public String toString() {
-		return name+": "+brand+", "+price+" lei, "+quantityInMl+" ml";
+		return name+", "+brand+", "+price+", "+quantityInMl;
 	}
 
 }

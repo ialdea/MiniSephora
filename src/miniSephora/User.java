@@ -38,4 +38,8 @@ public class User {
 		basket.listAllItems();
 		System.out.println("Total: "+ total);
 	}
+	
+	public String toString() {
+		return name+" "+surname+", "+username+", "+password+", "+email+", "+phoneNumber+", "+adress+", "+city;
+	}
 }

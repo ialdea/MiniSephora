@@ -24,7 +24,7 @@ public class MyShopApp {
 		
 		System.out.println("--------");
 		
-		User u1 = new User("Aldea", "Irina", "airina", "abulica", "irinaaldea56@yahoo.ro", "0740378832", "veteranilor, 20", "Bucuresti");
+		User u1 = new User("Aldea", "Irina", "airina", "abulica", "irinaaldea56@yahoo.ro", "0740378832", "veteranilor nr. 20", "Bucuresti");
 		s.addUser(u1);
 		
 		Item item = new Item(s.searchProductByName("Matte Perfection Stik"), 1);
@@ -40,12 +40,15 @@ public class MyShopApp {
 		
 		s.addOrder(u1.pay());
 		
-//		System.out.println("------Remove item----");
-//		sb1.removeByProductName("Pat Stik Foundation");
-//		sb1.listAllItems();
+//		s.listAllOrders();
+//		s.listAllUsers();
 		
 		
-	
+		System.out.println("------teste azi------");
+		s.writeOrders();
+		//s.writeProducts();
+		//s.writeUsers();
+		
 		
 		
 	}
