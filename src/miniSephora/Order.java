@@ -40,8 +40,8 @@ public class Order extends ShoppingBasket {
 	}
 	
 	public String toString() {
-		return  orderID+", "+ receiverName+", "+ phoneNo+", "+adress+", "+city+", "+ this.itemList.toString() +", "+ orderDate+", "+user.toString()+
-				", "+total;
+		return  orderID+"/ "+ receiverName+"/ "+ phoneNo+"/ "+adress+"/ "+city+"/ "+ this.itemList.toString() +"/ "+ orderDate+"/ "+user.toString()+
+				"/ "+total;
 	}
 	
 }

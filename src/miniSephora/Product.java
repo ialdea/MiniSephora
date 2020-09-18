@@ -7,6 +7,9 @@ public class Product {
 	float price;
 	int quantityInMl;
 	
+	public String getName() {return this.name;}
+	public String getBrand() {return this.brand;}
+	
 	public Product(String name, String brand, float price, int quantityMl) {
 		this.name = name;
 		this.brand = brand;

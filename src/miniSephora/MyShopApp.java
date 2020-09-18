@@ -21,6 +21,13 @@ public class MyShopApp {
 	public static void main(String[] args) {
 		
 		Shop s = Shop.getInstance();
+		s.readProducts();
+		s.readUsers();
+		try {
+			s.readOrders();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		System.out.println("--------");
 		

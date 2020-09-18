@@ -11,6 +11,6 @@ public class Item {
 	}
 	
 	public String toString() {
-		return product.name + " "+ quantity;
+		return product.name + "# "+ quantity;
 	}
 }
