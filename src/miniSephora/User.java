@@ -12,6 +12,9 @@ public class User {
 	String city;
 	ShoppingBasket basket;
 	
+	public String getUsername() {return this.username;}
+	public String getEmail() {return this.email;}
+	
 	public User(String name, String surname, String username, String password, String email, String phoneNumber, String adress, String city) {
 		this.name = name;
 		this.surname = surname;

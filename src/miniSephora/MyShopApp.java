@@ -23,11 +23,8 @@ public class MyShopApp {
 		Shop s = Shop.getInstance();
 		s.readProducts();
 		s.readUsers();
-		try {
-			s.readOrders();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		s.readOrders();
+		
 		
 		System.out.println("--------");
 		
@@ -55,7 +52,6 @@ public class MyShopApp {
 		s.writeOrders();
 		//s.writeProducts();
 		//s.writeUsers();
-		
 		
 		
 	}

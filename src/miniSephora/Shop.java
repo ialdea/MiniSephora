@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -35,6 +36,8 @@ public class Shop {
 	private Map<String, User> users;
 	
 	public Map getProducts() {return this.products;}
+	public Map getUsers() {return this.users;}
+	public List getOrders() {return this.orders;}
 	
 	private Shop() {
 		this.products = new HashMap<>();
@@ -252,7 +255,7 @@ public class Shop {
 		}
 	}
 	
-	public void readOrders() throws Exception {
+	public void readOrders() {
 		File file = new File("C:\\Users\\40740\\Desktop\\Work\\Files\\Orders.txt");
 		if(! file.exists()) {
 			return;
@@ -264,43 +267,48 @@ public class Shop {
 			reader = new FileReader(file);
 			bReader = new BufferedReader(reader);
 			String line = "";
-			while((line = bReader.readLine()) != null) {
-				String[] orderArr = line.split("/ ");
-				int orderID = Integer.parseInt(orderArr[0]);
-				String receiver = orderArr[1];
-				String phoneNr = orderArr[2];
-				String adress = orderArr[3];
-				String city = orderArr[4];
-				//lista de itemuri orderArr[5]
-				
-				String[] itemArr = orderArr[5].split(", ");
-				List<Item> itemList = new ArrayList<>();
-				for(int i = 0; i < itemArr.length; i++) {
-					String[] itemArrComponents = itemArr[i].split("# ");
-					String product = itemArrComponents[0];
-					String quantity = itemArrComponents[1];
-					Item item = new Item(products.get(product), Integer.parseInt(quantity));
-					itemList.add(item);
-				}
-				
-//				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-//				Date date = formatter.parse(orderArr[6]);
-				String date = orderArr[6];
-				
-				String[] userArr = orderArr[7].split(", ");
-				String[] nameAndSurname = userArr[0].split(" ");
-				String name = nameAndSurname[0];
-				String surname = nameAndSurname[1];
-				String username = userArr[1];
-				
-				User u = users.get(username); 
+			try {
+				while((line = bReader.readLine()) != null) {
+					String[] orderArr = line.split("/ ");
+					int orderID = Integer.parseInt(orderArr[0]);
+					String receiver = orderArr[1];
+					String phoneNr = orderArr[2];
+					String adress = orderArr[3];
+					String city = orderArr[4];
+					//lista de itemuri orderArr[5]
+					
+					String[] itemArr = orderArr[5].substring(1, orderArr[5].length()-1).split(", ");
+					List<Item> itemList = new ArrayList<>();
+					for(int i = 0; i < itemArr.length; i++) {
+						String[] itemArrComponents = itemArr[i].split("# ");
+						String product = itemArrComponents[0];
+						String quantity = itemArrComponents[1];
+						Item item = new Item(products.get(product), Integer.parseInt(quantity));
+						itemList.add(item);
+					}
+					
+//					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+//					Date date = formatter.parse(orderArr[6]);
+					String date = orderArr[6];
+					
+					String[] userArr = orderArr[7].split(", ");
+					String[] nameAndSurname = userArr[0].split(" ");
+					String name = nameAndSurname[0];
+					String surname = nameAndSurname[1];
+					String username = userArr[1];
+					
+					User u = users.get(username); 
 
-				float total = Float.parseFloat(orderArr[8]);
-				Order o = new Order(receiver, phoneNr, adress, city, itemList, date, u, total);
-				this.orders.add(o);
-				
+					float total = Float.parseFloat(orderArr[8]);
+					Order o = new Order(receiver, phoneNr, adress, city, itemList, date, u, total);
+					this.orders.add(o);
+					
+				}
+			}catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if(bReader != null) {

@@ -17,6 +17,9 @@ public class Order extends ShoppingBasket {
 	float total;
 	User user;
 	
+	public int getOrderID() {return this.orderID;}
+	public String getAdress() {return this.adress;}
+	
 	public static int nextID;
 	
 	public Order( String receiver, String phoneNo, String adress, String city, List<Item> itemList, String orderDate, 
@@ -40,7 +43,9 @@ public class Order extends ShoppingBasket {
 	}
 	
 	public String toString() {
-		return  orderID+"/ "+ receiverName+"/ "+ phoneNo+"/ "+adress+"/ "+city+"/ "+ this.itemList.toString() +"/ "+ orderDate+"/ "+user.toString()+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+		String date = formatter.format(orderDate);
+		return  orderID+"/ "+ receiverName+"/ "+ phoneNo+"/ "+adress+"/ "+city+"/ "+ this.itemList.toString() +"/ "+ date+"/ "+user.toString()+
 				"/ "+total;
 	}
 	
